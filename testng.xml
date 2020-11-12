@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="Test">
+    <classes>
+      <class name="testScript.LoginUnSuccessfullToken"/>
+      <class name="testScript.UpdateResourse"/>
+      <class name="testScript.GetResourseName"/>
+      <class name="testScript.PatchResourse"/>
+      <class name="testScript.DelayInResponse"/>
+      <class name="testScript.PostResourceName"/>
+      <class name="testScript.DeleteResource"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
