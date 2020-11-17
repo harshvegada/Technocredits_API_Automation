@@ -8,6 +8,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 import base.ServiceUtils;
 import constant.ConstantPath;
 import io.qameta.allure.Description;
@@ -41,7 +44,7 @@ public class GetResourseName extends TestBase {
     @Description("GET api call to retive users List on per pages")
     @Severity(SeverityLevel.NORMAL)
     @Epic("Epic for get to check user list on page")
-    public void getUserList() {
+    public void getUserList() throws JsonParseException, JsonMappingException, IOException {
         String apiName = baseURL + listUsers;
         log.debug("Api Name : " + apiName);
         CloseableHttpResponse response = httpHelper.serviceCallWithAPIName(apiName, "GET", null);
@@ -52,12 +55,7 @@ public class GetResourseName extends TestBase {
         log.info("Valid Response Status Code");
         String responseBody = ServiceUtils.getResponseBody(response);
 
-        Resources resources = null;
-        try {
-            resources = mapper.readValue(responseBody, Resources.class);
-        } catch (IOException e) {
-            log.error(e.getMessage());
-        }
+        Resources resources = mapper.readValue(responseBody, Resources.class);
         log.info("Total pages : " + resources.getPage());
         log.info("Total per page user : " + resources.getPerPage());
         log.info("Total per page data : " + resources.getData().size());
